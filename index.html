@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decision Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+        .description {
+            margin-bottom: 20px;
+        }
+        .options {
+            margin-top: 20px;
+        }
+        .button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .red-option {
+            background-color: #FF0000;
+        }
+        .red-option:hover {
+            background-color: #cc0000;
+        }
+        .blue-option {
+            background-color: #007BFF;
+        }
+        .blue-option:hover {
+            background-color: #0056b3;
+        }
+        #nameInput {
+            display: none;
+            margin-top: 20px;
+        }
+        table {
+            width: 80%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="description">
+            bapak mu adalah bapak yang buruk sebelum ia bercerai, terbilang sangat pelit pada keluarga nya, namun akhirnya setelah cerai ia berubah jadi orang yang lebih baik dan ingin menebus kesalahan nya dengan tetep memberi anak anak biaya apapun. tapi ibu mu juga sudah berjuang semaksimal mungkin membiayai anak anak nya namun sang ibu masih dendam, tapi di sisi lain si bapak sudah hidup bertahun tahun menanggung rasa bersalah karena sudah melakukan hal buruk di masa lalu.
+        </div>
+        <div class="options">
+            <button class="button red-option" onclick="chooseOption('Red Option')">Kasih tau ke bapak kalau sang ibu berhasil ngebiayain anak anak nya sendirian namun konsukuensi yang di dapat ialah sang bapak menjadi sedih karena merasa tidak sanggup membiayai walaupun sudah berusaha dan walaupun dia sudah menjadi orang yang lebih baik masih di hantui rasa bersalah masa lalu nya</button>
+            <button class="button blue-option" onclick="chooseOption('Blue Option')">Tidak memberi tahu bapak karena kau merasa kasihan dengan bapak yang sudah berubah menjadi lebih baik dan sudah berusaha semaksimal mungkin ikut serta membiayai anak anak kandung nya walaupun tidak sebesar perjuangan sang ibu</button>
+        </div>
+        <div id="nameInput">
+            <input type="text" id="name" placeholder="Masukkan nama Anda">
+            <button class="button blue-option" onclick="submitName()">Submit</button>
+        </div>
+    </div>
+    <table id="resultsTable">
+        <tr>
+            <th>Nama</th>
+            <th>Pilihan</th>
+        </tr>
+    </table>
+    <script>
+        let chosenOption = '';
+
+        function chooseOption(option) {
+            chosenOption = option;
+            document.getElementById('nameInput').style.display = 'block';
+        }
+
+        function submitName() {
+            const name = document.getElementById('name').value;
+            if (name) {
+                const table = document.getElementById('resultsTable');
+                const newRow = table.insertRow();
+                const nameCell = newRow.insertCell(0);
+                const optionCell = newRow.insertCell(1);
+                nameCell.textContent = name;
+                optionCell.textContent = chosenOption;
+                
+                document.getElementById('name').value = '';
+                document.getElementById('nameInput').style.display = 'none';
+                chosenOption = '';
+            } else {
+                alert('Please enter your name.');
+            }
+        }
+    </script>
+</body>
+</html>
